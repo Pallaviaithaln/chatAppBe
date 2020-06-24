@@ -11,13 +11,19 @@ app.get('/', (req, res) => {
 });
 // let msgs = '';
 io.on('connection', function (socket) {
-    socket.join('game');
-    socket.on('sendMessage', function (message) {
-        // io.emit('groupChatMessage', message);
-        io.in('game').emit('groupChatMessage', message);
-        console.log(message, "sendMessage");
-    });
-    socket.emit('welcomeMessage',{
+    socket.on('joinGroup', function (room) {
+        socket.join(room);
+        socket.on('sendMessage', function (message) {
+            io.in(room).emit('groupChatMessage', message);
+        });
+    })
+    // socket.join('game');
+    // socket.on('sendMessage', function (message) {
+    //     // io.emit('groupChatMessage', message);
+    //     io.in('game').emit('groupChatMessage', message);
+    //     console.log(message, "sendMessage");
+    // });
+    socket.emit('welcomeMessage', {
         user: "Admin",
         text: "welcome to palsApp"
     });

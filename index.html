@@ -12,12 +12,19 @@
     <div>
         <input id="textName" type="text" name="textName">
         <button id="sendBtn" onclick="beginChat()">Send</button>
-        <button>Join</button>
+        <label>Room name</label>
+        <input id="roomId" type="text" name="room" autofocus>
+        <button id=joinRoom onclick="joinChat()">Join</button>
         <div id="message-container">
             <h1><B>Messages</B></h1>
         </div>
         <script>
             var socket = io();
+            function joinChat() {
+                let roomName = document.getElementById('roomId').value;
+                console.log(roomName, "<------roomName----->");
+                socket.emit('joinGroup', roomName);
+            }
             let msgs = '';
             socket.emit('sendMessage', 'welcome to group chat');
             function beginChat() {
@@ -56,7 +63,7 @@
             </div>
         </form> -->
     </div>
-<!-- <script type="text/javascript" src="/index.js"></script> -->
+    <!-- <script type="text/javascript" src="/index.js"></script> -->
 </body>
 
 </html>
