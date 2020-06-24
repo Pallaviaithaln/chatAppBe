@@ -11,7 +11,10 @@ app.get('/', (req, res) => {
 });
 // let msgs = '';
 io.on('connection', function (socket) {
+    socket.join('game');
     socket.on('sendMessage', function (message) {
+        // io.emit('groupChatMessage', message);
+        io.in('game').emit('groupChatMessage', message);
         console.log(message, "sendMessage");
     });
     socket.emit('welcomeMessage',{

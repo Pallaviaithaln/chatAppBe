@@ -9,28 +9,36 @@
 
 <body>
     <script src="/socket.io/socket.io.js"></script>
-    <!-- <script type="text/javascript" src="index.js"></script> -->
     <div>
         <input id="textName" type="text" name="textName">
         <button id="sendBtn" onclick="beginChat()">Send</button>
         <button>Join</button>
-        <div id="message-container"> <h1><B>Messages</B></h1></div>
+        <div id="message-container">
+            <h1><B>Messages</B></h1>
+        </div>
         <script>
             var socket = io();
             let msgs = '';
+            socket.emit('sendMessage', 'welcome to group chat');
             function beginChat() {
                 console.log('I am in client');
-                msgs += document.getElementById('textName').value+'<br/>';
+                msgs += document.getElementById('textName').value + '<br/>';
                 document.getElementById('message-container').innerHTML = msgs;
                 socket.emit('sendMessage', msgs);
             };
-            socket.on('welcomeMessage', function(welcome){
+            socket.on('groupChatMessage', function (msg) {
+                var div = document.createElement("div");
+                div.innerHTML = msg;
+                document.body.appendChild(div);
+            });
+            socket.on('welcomeMessage', function (welcome) {
                 console.log('welcomeMessage', welcome);
             })
-            socket.on('groupChat', function(group){
+            socket.on('groupChat', function (group) {
                 console.log('group-chat', group);
             })
         </script>
+
         <!-- <form>
             <div class="form-field">
                 <h3>Join Chat</h3>
@@ -48,8 +56,7 @@
             </div>
         </form> -->
     </div>
-  
-
+<!-- <script type="text/javascript" src="/index.js"></script> -->
 </body>
 
 </html>

@@ -1,6 +1,8 @@
 let socket = io();
 let msgs = '';
-document.getElementById("sendBtn").onclick = function() {beginChat()};
+
+window.onload = beginChat;
+// document.getElementById("sendBtn").onclick = function() {beginChat()};
 function beginChat() {
     msgs += document.getElementById('textName').value + '<br/>';
     document.getElementById('message-container').innerHTML = msgs;
