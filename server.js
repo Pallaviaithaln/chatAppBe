@@ -24,6 +24,21 @@ io.on('connection', function (socket) {
         });
         console.log('message sent')
     });
+    socket.on('requestChat', (data => {
+        if (data.length <= 2) {
+            socket.broadcast.emit('sendMessage', 'Request accepted');
+            socket.join(room);
+            socket.on('sendMessage', (message => {
+                io.in(room).emit('personalChatMsg', message);
+            }));
+        }
+        else {
+            let userList = users.filter(u => { return u !== socket.user; });
+            users = userList;
+            socket.emit('disconnected');
+            updateClients();
+        };
+    }));
     // socket.on('joinGroup', function (room) {
     //     socket.join(room);
     //     socket.on('sendMessage', function (message) {
