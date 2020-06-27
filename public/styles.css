@@ -1,0 +1,116 @@
+
+.body{
+    background-color: #F2F2F2;
+}
+.field-name {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+.btn {
+        width: 150px;
+        background-color: #3A78E7;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+.btn-wrap {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+.form-wrap {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 91vh;
+    }
+.fields {
+        width: 36%;
+    }
+.users-wrap {
+    padding: 20px;
+    display: none;
+}
+.left-wrap {
+    width: 25%;
+    margin-right: 20px;
+    color: #3A78E7;
+    display:none;
+}
+.users-list{
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+.right-wrap{
+    width: calc(100% - 25%);
+    position: relative;
+}
+.msg-body {
+    padding: 0 30px;
+    height: 90vh;
+    overflow: auto;
+    border: 1px solid #ccc;
+}
+.reply-side{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .msg-wrap {
+    border-radius: 16px 0 16px 16px;
+    background-image: linear-gradient(95deg, #3A78E7, #879CC1);
+    max-width: 30%;
+    padding: 12px 18px 7px;
+    margin: 15px 0;
+  }
+  .msg {
+    color: #fff;
+    font-size: 16px;
+  }
+  .user-side{
+    display: flex;
+    justify-content: flex-start;
+  }
+  .user-msg-wrap {
+    border-radius: 0 16px 16px;
+    background-image: linear-gradient(95deg, #3A78E7, #879CC1);
+  }
+  .mycustom {
+    position: relative;
+    }
+    .mycustom input[type=text] {
+    border: none;
+    width: 100%;
+    padding-right: 123px;
+    }
+    .mycustom .input-group-prepend {
+    position: absolute;
+    right: 4px;
+    top: 10px;
+    }
+   .send-btn{
+    width: 70px;
+    background-color: #3A78E7;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    height: 35px;
+    }
+.input-form{
+    position: absolute;
+    width: 93%;
+    bottom: 0;
+}
