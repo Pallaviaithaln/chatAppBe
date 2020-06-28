@@ -10,12 +10,25 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
 app.use(express.static(path.join(__dirname, 'public')));
-// let msgs = '';
+
+/*
+
+array of objects with user name and socket id
+
+get only users who are online except current logged in user
+
+on request, send msg to the respected socket id and get a msg about the response
+
+---> on request : "request sent" display in the logged in socket (from)
+                  "accept request" to be displayed in the other socket (to)
+---> on accept  : begin chat by creating room between 2
+
+*/
 var users = [];
 io.on('connection', function (socket) {
     socket.on('joinChat', function (user) {
         socket.user = user;
-        console.log(user, socket.user, 'connected');
+        console.log(user, socket.id, 'connected');
         users.push(user);
         updateClients();
         socket.emit('welcomeMessage', {
@@ -24,6 +37,15 @@ io.on('connection', function (socket) {
         });
         console.log('message sent')
     });
+    socket.on('requestingUser', function (user) {
+        // socket.broadcast.to(socket.id).emit('sendMessage', 'for your eyes only');
+        socket.emit('sendMessage', user + '<--- Request sent from --->' + socket.user);
+    });
+
+    socket.on('acceptingUser', function (user) {
+        socket.emit('sendMessage', socket.user + '<--- Accepted Request from' + user + 'and begin chat---->')
+    })
+
     socket.on('requestChat', (data => {
         if (data.length <= 2) {
             socket.broadcast.emit('sendMessage', 'Request accepted');

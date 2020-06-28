@@ -2,6 +2,9 @@
 .body{
     background-color: #F2F2F2;
 }
+.links{
+    cursor: pointer;
+}
 .field-name {
         width: 100%;
         padding: 12px 20px;
